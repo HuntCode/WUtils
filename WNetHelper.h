@@ -45,15 +45,16 @@ public:
 
     bool IsLocalIP(const char* ip); //主要针对多网卡情况
 
+	//获取一个有效的IP地址，如果存在多个网卡，取其中一个，且不保证固定
+	IP_ADAPTER_ADDRESSES GetFirstConnectedAdapter();
 private:
     WNetHelper();
 
 	void QueryAdapterList();
 	void CleanAdapterList();
 	std::vector<IP_ADAPTER_ADDRESSES>& GetAdapterList();
-	IP_ADAPTER_ADDRESSES GetFirstConnectedAdapter();
-	//获取一个有效的IP地址，如果存在多个网卡，取其中一个，且不保证固定
 
+	
 	std::string IPSegmentAddress(int segments);
 
 	std::string GetIpStr(const struct sockaddr* sa);
